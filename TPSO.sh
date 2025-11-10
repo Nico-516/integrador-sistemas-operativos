@@ -10,6 +10,37 @@ MAGENTA='\e[35m'
 CIAN='\e[36m'
 RESET='\e[0m'
 
+generarInforme(){
+    # Definir el nombre del archivo log
+    LOGFILE="sistema_log.txt"
+
+    # Obtener la fecha y hora actual
+    echo -e "${AMARILLO}Informe del sistema - $(date)${RESET}" > $LOGFILE
+    echo "" >> $LOGFILE
+
+    # Obtener el uso de la CPU
+    echo -e "${AMARILLO}Uso de la CPU:" ${RESET}>> $LOGFILE
+    top -b -n 1 | grep "Cpu(s)" >> $LOGFILE
+    echo "" >> $LOGFILE
+
+    # Obtener el uso de la memoria
+    echo -e "${AMARILLO}Uso de la memoria:${RESET}" >> $LOGFILE
+    free -h >> $LOGFILE
+    echo "" >> $LOGFILE
+
+    # Obtener el uso del disco
+    echo -e "${AMARILLO}Uso del disco:${RESET}" >> $LOGFILE
+    df -h >> $LOGFILE
+    echo "" >> $LOGFILE
+
+    # Fin del informe
+    clear
+    echo -e "${VERDE}Informe generado y guardado en $LOGFILE ${RESET}"
+    cat sistema_log.txt
+}
+
+    echo -e "${AMARILLO}Bienvenido!"
+
 #Menu opciones
 while true; do
     echo -e "Elija una opcion${RESET}"
