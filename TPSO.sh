@@ -39,6 +39,46 @@ generarInforme(){
     cat sistema_log.txt
 }
 
+eliminarTemporales(){
+
+# Confirmación antes de eliminar archivos
+while true; do
+    read -p "¿Estás seguro de que deseas eliminar archivos temporales y caché? (s/n): " confirm
+    case $confirm in
+    [sS])
+        # Eliminar archivos temporales del sistema
+        echo "Eliminando archivos temporales del sistema..."
+        sudo rm -rf /tmp/*
+        sudo rm -rf /var/tmp/*
+        echo "Archivos temporales eliminados."
+
+        # Limpiar caché del sistema
+        echo -e "${AMARILLO}Limpiando caché del sistema...${RESET}"
+        sudo apt-get clean  # Para sistemas basados en Debian/Ubuntu
+        sudo apt-get autoremove -y  # Elimina paquetes no necesarios
+        echo -e "${VERDE}Caché del sistema limpiada.${RESET}"
+
+        # Limpiar caché de navegadores (ejemplo para Firefox y Chrome)
+        echo -e "${AMARILLO}Eliminando caché de navegadores...${RESET}"
+        rm -rf ~/.cache/mozilla/firefox/*/cache2/*
+        rm -rf ~/.cache/google-chrome/Default/Cache/*
+        echo -e "${VERDE}Caché de navegadores eliminada."
+
+        echo -e "Limpieza completada.${RESET}"
+        break
+        ;;
+    [nN])
+        echo "Operación cancelada."
+        exit 1
+        ;;
+    *)
+        echo "opcion incorrecta, vuelva a ingresar otra opcion"
+        ;;
+    esac
+done
+}
+
+clear
     echo -e "${AMARILLO}Bienvenido!"
 
 #Menu opciones
