@@ -78,6 +78,49 @@ while true; do
 done
 }
 
+actualizaciones(){
+
+# Configuración de variables
+LOGFILE="/var/log/actualizaciones.log"
+DATE=$(date +"%Y-%m-%d %H:%M:%S")
+
+# Función para registrar en el log
+function log {
+    echo "$DATE - $1" >> $LOGFILE
+}
+
+# Verificar actualizaciones
+echo "Verificando actualizaciones..."
+if sudo apt-get update > /dev/null 2>&1; then
+    log "Actualizaciones verificadas con éxito."
+else
+    log "Error al verificar actualizaciones."
+    exit 1
+fi
+
+# Instalar actualizaciones
+echo "Instalando actualizaciones..."
+if sudo apt-get upgrade -y > /dev/null 2>&1; then
+    log "Actualizaciones instaladas con éxito."
+else
+    log "Error al instalar actualizaciones."
+    exit 1
+fi
+
+# Limpiar el caché
+echo "Limpiando caché de paquetes..."
+if sudo apt-get clean > /dev/null 2>&1; then
+    log "Caché de paquetes limpiada con éxito."
+else
+    log "Error al limpiar el caché de paquetes."
+    exit 1
+fi
+
+# Finalizar
+echo "Proceso de actualización completado."
+cat $LOGFILE   
+}
+
 clear
     echo -e "${AMARILLO}Bienvenido!"
 

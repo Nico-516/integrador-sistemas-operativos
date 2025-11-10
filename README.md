@@ -21,6 +21,44 @@ Pasos para ejecutar el programa usando wls
 4. Agregamos permisos de ejecucion `chmod +x TPSO.sh`
 5. Por último, ejecutamos el archivo escribiendo `sudo ./TPSO.sh`
   
+## Instrucciones para colaborar 
+
+1. Clona el repositorio: 
+Primero, haz un fork del repositorio en tu cuenta de GitHub.
+Luego, clona el fork a tu máquina local con el siguiente comando en la terminal:
+`git clone https://github.com/Nico-516/integrador-sistemas-operativos.git`
+
+
+2. Configura el repositorio original como remoto:
+Esto permite sincronizar tu fork con el repositorio original. Entra al directorio clonado:
+`cd integrador-sistemas-operativos`
+
+3. Luego, agrega el repositorio original como "upstream":
+`git remote add upstream https://github.com/Nico-516/integrador-sistemas-operativos.git`
+
+4. Crea una rama para tu contribución:
+Asegúrate de crear una rama nueva para cada funcionalidad o cambio que quieras proponer.
+`git checkout -b nombre-de-tu-rama`
+
+5. Haz cambios y commits:
+Realiza los cambios necesarios en el código.
+Usa mensajes de commit descriptivos que expliquen el propósito de cada cambio.
+`git add *`
+`git commit -m "Descripción de los cambios"`
+
+6. Sincroniza con el repositorio original:
+Antes de enviar tu cambio, asegúrate de que tu fork esté actualizado con el repositorio original:
+`git fetch upstream`
+`git merge upstream/main`
+
+7. Sube tu rama a GitHub:
+Sube la rama en la que has trabajado a tu fork en GitHub.
+`git push origin nombre-de-tu-rama`
+
+8. Crea un Pull Request:
+Ve a tu repositorio en GitHub, selecciona la rama en la que trabajaste y haz clic en New Pull Request.
+Especifica el objetivo del Pull Request, qué problema soluciona o qué mejora.
+
 
 ## Integrantes:
 - Ayelen Agüero
